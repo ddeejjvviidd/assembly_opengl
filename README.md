@@ -1,8 +1,24 @@
-# Using System V ABI x86-64
+# X86_64 Assembly with OpenGL
 
-rdi - fist argument
-rsi - second argument
-rdx - third argument
-rcx - fourth argument
-r8 - fifth argument
-r9 - sixth argument
+I was bored and wanted to discover how to use C functions in Assembly, so I did this stupid program which draws a line across the screen.
+
+# Required
+
+- nasm
+- glfw library
+
+```bash
+sudo apt install libglfw3 libglfw3-dev
+```
+
+# How to run
+
+```bash
+make && make run
+```
+
+or
+
+```bash
+make && ./assgl.elf
+```
