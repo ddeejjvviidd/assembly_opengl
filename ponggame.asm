@@ -1,10 +1,10 @@
 section .rodata
-windowTitle: db "Pong 2D in Assembly!", 0
+windowTitle: db "OpenGL in Assembly!", 0
 
 section .data
-colorBlack: dq 1.0, 0.0, 1.0, 0.0  ; red blue alpha green  
-colorWhite: dd 1.0, 1.0, 1.0, 1.0  ; white
-lineVertices: dq -0.01, -1.0, 0.01, -1.0, 0.01, 1.0, -0.01, 1.0
+colorBlack: dq 1.0, 0.0, 1.0, 0.0 
+colorWhite: dd 1.0, 1.0, 1.0, 1.0
+lineVertices: dq -0.01, -1.0, 0.01, -1.0, 0.01, 1.0, -0.01, 1.0 ; not used
 
 x_val: dd 1.0
 y_val: dd 1.0
@@ -82,19 +82,16 @@ windowLoop:
     mov rcx, 525
     call glViewport
 
-    mov rdi, 0x00004000 ; GL_COLOR_BUFFER_BIT
-    call glClear
+    mov rdi, 0x00004000 ; 0x00004000 GL_COLOR_BUFFER_BIT
+    call glClear ; clearing color buffer
 
     
-    mov rdi, 0x0001 ; GL_LINES
+    mov rdi, 0x0001 ; 0x0001 GL_LINES
     call glBegin
 
     call setColorWhite
 
-    ;mov rdi, lineVertices
-    ;call glVertex2f
-
-    ; trying to draw a line
+    ; trying to draw a line from center to top right
     movss xmm0, [x_val]
     movss xmm1, [y_val]
     call glVertex2f
@@ -104,7 +101,6 @@ windowLoop:
     call glVertex2f
 
     call glEnd
-
 
 
     ; glfwSwapBuffers()
